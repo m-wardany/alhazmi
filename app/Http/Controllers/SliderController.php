@@ -23,13 +23,13 @@ class SliderController extends Controller
 
     public function store(StoreSliderRequest $request)
     {
-        $slider = Slider::create($request->validated());
+        $slider = new Slider($request->validated());
 
         if ($request->hasFile('image')) {
             $path = Storage::disk('public')->put('slider', $request->file('image'));
             $slider->image = $path;
-            $slider->save();
         }
+        $slider->save();
 
         return redirect()->route('slider.index')->with('success', 'Slider created successfully!');
     }
@@ -41,13 +41,13 @@ class SliderController extends Controller
 
     public function update(UpdateSliderRequest $request, Slider $slider) // Route model binding
     {
-        $slider->update($request->validated());
+        $slider->fill($request->validated());
 
         if ($request->hasFile('image')) {
             $path = Storage::disk('public')->put('slider', $request->file('image'));
             $slider->image = $path;
-            $slider->save();
         }
+        $slider->save();
 
         return redirect()->route('slider.index')->with('success', 'Slider updated successfully!');
     }

@@ -8,11 +8,11 @@
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Create Slider') }}
+                {{ __('Create Product') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('Add a new slider image to the home slider.') }}
+                {{ __('Add a new product.') }}
             </p>
         </header>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -27,19 +27,35 @@
                         </ul>
                     </div>
                 @endif
-                @if (isset($slider))
-                    <form action="{{ route('slider.update', ['slider' => $slider->id]) }}" method="POST"
+
+                @if (isset($product))
+                    <form action="{{ route('product.update', ['product' => $product->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @method('put')
                     @else
-                        <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                             @method('post')
                 @endif
                 @csrf
-                @if (isset($slider))
-                    <img src="{{ asset('storage/' . $slider->image) }}" width="400">
-                @endif
+                <div>
+                    <x-input-label for="ar_name" :value="__('Ar_name')" />
+                    <x-text-input id="ar_name" name="ar_name" type="text" class="mt-1 block w-full"
+                        :value="old('ar_name', isset($product) ? $product->ar_name : '')" required autofocus autocomplete="ar_name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('ar_name')" />
+                </div>
+                <br />
+                <div>
+                    <x-input-label for="en_name" :value="__('En_name')" />
+                    <x-text-input id="en_name" name="en_name" type="text" class="mt-1 block w-full"
+                        :value="old('en_name', isset($product) ? $product->en_name : '')" required autofocus autocomplete="en_name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('en_name')" />
+                </div>
+                <br />
+
                 <div class="form-group">
+                    @if (isset($product))
+                        <img src="{{ asset('storage/' . $product->image) }}" width="400">
+                    @endif
                     <label for="image">Image</label>
                     <input type="file" class="form-control" id="image" name="image">
                 </div>

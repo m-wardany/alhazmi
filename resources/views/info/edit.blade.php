@@ -19,7 +19,6 @@
             @csrf
             @method('post')
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                <x-text-input id="language" name="language" type="hidden" class="mt-1 block w-full" :value="old('language', $info->language)" />
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <div>
                         <x-input-label for="about" :value="__('About')" />

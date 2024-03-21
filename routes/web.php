@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
@@ -31,15 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/info/edit/{info:language}', [InfoController::class, 'edit'])->name('info.edit')->whereIn('info', ['ar', 'en']);
     Route::post('/info/update/{info:language}', [InfoController::class, 'update'])->name('info.update');
     Route::resources([
-        'slider' => SliderController::class
+        'slider' => SliderController::class,
+        'product' => ProductController::class,
     ]);
-    // Route::group(["prefix" => "/slider"], function () {
-    //     Route::get("", [SliderController::class, "index"])->name("slider.index");
-    //     Route::get("/create", [SliderController::class, "store"])->name("slider.create");
-    //     Route::post("/create", [SliderController::class, "store"])->name("slider.store");
-    //     Route::post("/update", [SliderController::class, "store"])->name("slider.update");
-    //     Route::delete("/{info}", [SliderController::class, "destroy"])->name("slider.destroy");
-    // });
 });
 
 require __DIR__ . '/auth.php';
