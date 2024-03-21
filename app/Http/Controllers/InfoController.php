@@ -30,7 +30,7 @@ class InfoController extends Controller
 
         $info->update($request->all());
 
-        return redirect()->route('info.edit', ['language' => $request->get('language')])->with('success', 'Info updated successfully!');
+        return redirect()->route('info.edit', ['info' => $request->get('language')])->with('success', 'Info updated successfully!');
     }
 
     function resolveArrayVariables(Info &$info): void
