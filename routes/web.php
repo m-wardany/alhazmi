@@ -6,6 +6,7 @@ use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SocialMediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
         'product' => ProductController::class,
         'award' => AwardController::class,
         'branch' => BranchController::class,
+        'socialmedia' => SocialMediaController::class,
     ]);
 });
 
