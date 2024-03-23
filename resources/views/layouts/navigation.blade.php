@@ -62,6 +62,11 @@
                         {{ __('Awards') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('branch.index')" :active="request()->routeIs('branch/*')">
+                        {{ __('Branches') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -154,6 +159,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('award.index')" :active="request()->routeIs('award/*')">
                 {{ __('Awards') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('branch.index')" :active="request()->routeIs('branch/*')">
+                {{ __('Branches') }}
             </x-responsive-nav-link>
         </div>
         <!-- Responsive Settings Options -->
