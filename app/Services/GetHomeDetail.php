@@ -4,12 +4,14 @@ namespace App\Services;
 use App\Http\Resources\AwardResource;
 use App\Http\Resources\BranchResource;
 use App\Http\Resources\InfoResource;
+use App\Http\Resources\PartnerResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\SliderResource;
 use App\Http\Resources\SocialMediaResource;
 use App\Models\Award;
 use App\Models\Branch;
 use App\Models\Info;
+use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Slider;
@@ -28,6 +30,7 @@ final class GetHomeDetail
             $catalogue = $settings->firstWhere('key', Setting::CATALOGUE_URL);
             $awards = Award::all();
             $branches = Branch::all();
+            $partners = Partner::all();
             $socialMedia = SocialMedia::all();
             [$contactPhones, $contactMobiles, $contactEmails, $contactFax] = [
                 $settings->firstWhere('key', Setting::CONTACT_PHONES),
@@ -45,6 +48,7 @@ final class GetHomeDetail
                     ],
                     'awards' => AwardResource::collection($awards),
                     'branches' => BranchResource::collection($branches),
+                    'partners' => PartnerResource::collection($partners),
                     'contacts' => [
                         'info' => [
                             'contactPhones' => data_get($contactPhones, 'formatted_value'),
