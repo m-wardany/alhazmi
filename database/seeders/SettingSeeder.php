@@ -14,19 +14,30 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::updateOrCreate([
-            'key' => '',
+            'key' => Setting::CONTACT_PHONES,
         ], [
             'value' => ''
         ]);
 
         Setting::updateOrCreate([
-            'key' => '',
+            'key' => Setting::CONTACT_MOBILES,
         ], [
             'value' => ''
         ]);
 
         Setting::updateOrCreate([
-            'key' => '',
+            'key' => Setting::CONTACT_FAX,
+        ], [
+            'value' => ''
+        ]);
+
+        Setting::updateOrCreate([
+            'key' => Setting::CONTACT_EMAILS,
+        ], [
+            'value' => ''
+        ]);
+        Setting::updateOrCreate([
+            'key' => Setting::CATALOGUE_URL,
         ], [
             'value' => ''
         ]);

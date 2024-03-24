@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialMediaController;
 use Illuminate\Support\Facades\Route;
@@ -19,12 +20,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -41,6 +37,7 @@ Route::middleware('auth')->group(function () {
         'branch' => BranchController::class,
         'socialmedia' => SocialMediaController::class,
     ]);
+    Route::resource('setting', SettingController::class)->only(['index', 'create', 'store']);
 });
 
 require __DIR__ . '/auth.php';
