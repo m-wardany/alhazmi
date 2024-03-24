@@ -30,6 +30,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/info/edit/{info:language}', [InfoController::class, 'edit'])->name('info.edit')->whereIn('info', ['ar', 'en']);
     Route::post('/info/update/{info:language}', [InfoController::class, 'update'])->name('info.update');
+    Route::prefix('product')->group(function () {
+        Route::get('catalogue', [ProductController::class, 'editCatalogue'])->name('edit.catalogue');
+        Route::put('catalogue', [ProductController::class, 'updateCatalogue'])->name('update.catalogue');
+        Route::get('catalogue/download', [ProductController::class, 'downloadCatalogue'])->name('download.catalogue');
+    });
     Route::resources([
         'slider' => SliderController::class,
         'product' => ProductController::class,

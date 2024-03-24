@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductCatalogueRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProductController extends Controller
 {
@@ -67,6 +70,40 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('product.index')->with('success', 'Product updated successfully!');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function editCatalogue()
+    {
+        $catalogue = Setting::firstWhere('key', Setting::CATALOGUE_URL);
+        return view('product.catalogue_form', compact('catalogue'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateCatalogue(UpdateProductCatalogueRequest $request)
+    {
+        $catalogue = Setting::firstWhere('key', Setting::CATALOGUE_URL);
+
+        if ($request->hasFile('file')) {
+            $path = Storage::disk('public')->put('catalogue', $request->file('file'));
+            $catalogue->value = $path;
+        } else {
+            $catalogue->value = null;
+        }
+        $catalogue->save();
+
+        return redirect()->route('product.index')->with('success', 'Catalogue updated successfully!');
+    }
+
+    function downloadCatalogue(): StreamedResponse
+    {
+        $catalogue = Setting::firstWhere('key', Setting::CATALOGUE_URL);
+        return Storage::disk('public')->download($catalogue->value, 'Alhazemi-Catalogue.pdf');
     }
 
     /**

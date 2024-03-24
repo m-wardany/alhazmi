@@ -15,10 +15,14 @@
         </header>
     </section>
     <section>
-        <x-primary-link :href="route('product.create')" :active="request()->routeIs('product/*')">
+        <x-primary-link :href="route('product.create')">
             {{ __('Add a new product') }}
         </x-primary-link>
-
+        <x-primary-link :href="route('edit.catalogue')">
+            {{ __('Update Catalogue') }}
+        </x-primary-link>
+        <br />
+        <br />
         <div class="relative
             overflow-x-auto shadow-md sm:rounded-lg">
 
