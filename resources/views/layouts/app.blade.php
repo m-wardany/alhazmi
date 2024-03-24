@@ -16,7 +16,7 @@
     <link rel="modulepreload" href="{{ asset('resources/js/app.js') }}">
     <link rel="stylesheet" href="{{ asset('resources/css/app-2.css') }}">
     <script type="module" src="{{ asset('resources/js/app-1.js') }}"></script>
-    <!-- Scripts -->
+
 </head>
 
 <body class="font-sans antialiased">
