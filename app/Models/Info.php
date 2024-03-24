@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Info extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\UpdateCache;
 
     protected $fillable = [
         'language',

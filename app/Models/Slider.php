@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\UpdateCache;
 
     protected $fillable = [
         'image',
     ];
+
+    function getImageUrlAttribute(): string
+    {
+        return asset('storage/' . $this->image);
+    }
 }

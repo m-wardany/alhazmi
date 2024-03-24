@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasLocale;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model
 {
-    use HasFactory;
+    use HasFactory, HasLocale, \App\Traits\UpdateCache;
 
 
     protected $fillable = [
@@ -15,4 +16,9 @@ class Award extends Model
         'en_name',
         'image'
     ];
+
+    function getImageUrlAttribute(): string
+    {
+        return asset('storage/' . $this->image);
+    }
 }

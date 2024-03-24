@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
+    use \App\Traits\UpdateCache;
     const CONTACT_PHONES = 'contact_phones';
     const CONTACT_MOBILES = 'contact_mobiles';
     const CONTACT_FAX = 'contact_fax';

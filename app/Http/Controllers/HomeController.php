@@ -1,23 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\AwardResource;
+use App\Http\Resources\BranchResource;
+use App\Http\Resources\InfoResource;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\SliderResource;
+use App\Http\Resources\SocialMediaResource;
+use App\Models\Award;
+use App\Models\Branch;
+use App\Models\Info;
+use App\Models\Product;
+use App\Models\Setting;
+use App\Models\Slider;
+use App\Models\SocialMedia;
+use App\Services\GetHomeDetail;
 use App\Site;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -26,45 +35,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $client = new Client();
-
-        $user_id = Auth::id();
-        
-        $site = Site::get();
-        $user_data = User::find($user_id);
-        // dd($user_data,$user_channels);
-        $site = Site::get();
-        $data = array(
-            "site"=>$site,
-            "user_data"=>$user_data
-        );
-        dd($data);
-
-        return view('home');
-    }
-
-    public function edit($id)
-    {
-        $user_id = Auth::id();
-        
-        $site_ar = Site::where('site_id',$id)->where('lang','=','0')->get();
-        $site_en = Site::where('site_id',$id)->where('lang','=','1')->get();
-        $user_data = User::find($user_id);
-        $data = array(
-            "site"=>array(
-                "ar"=>$site_ar,
-                "en"=>$site_en
-            ),
-            "user_data"=>$user_data
-        );
-        return $data;
-        // dd($data);
+        return response()->json((new GetHomeDetail)->execute());
     }
 
 
-    public function update($request, $id)
+    function downloadCatalogue(): ?StreamedResponse
     {
-        
-        
+        $catalogue = Setting::firstWhere('key', Setting::CATALOGUE_URL);
+        if (!empty (data_get($catalogue, 'value'))) {
+            return Storage::disk('public')->download($catalogue->value, 'Alhazemi-Catalogue.pdf');
+        }
+        return null;
     }
 }

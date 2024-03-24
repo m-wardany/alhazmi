@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialMedia extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\UpdateCache;
 
     protected $fillable = [
         'ar_name',
@@ -15,4 +15,9 @@ class SocialMedia extends Model
         'url',
         'image'
     ];
+
+    function getImageUrlAttribute(): string
+    {
+        return asset('storage/' . $this->image);
+    }
 }
