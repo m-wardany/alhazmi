@@ -26,15 +26,15 @@
             <table class="w-full ">
                 <thead>
                     <tr class="bg-white border-b  dark:border-gray-700">
-                        <th>Contact</th>
-                        <th>Value</th>
+                        <th>{{ __('Contact Type') }}</th>
+                        <th>{{ __('Value') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($settings as $setting)
                         <tr class="bg-white border-b ">
                             <td>
-                                {{ ucwords(str_replace('_', ' ', $setting->key)) }}
+                                {{ __(ucwords(str_replace('_', ' ', $setting->key))) }}
                             </td>
                             <td>
                                 {{ $setting->value }}

@@ -18,14 +18,9 @@ class SettingController extends Controller
             Setting::CONTACT_MOBILES,
             Setting::CONTACT_EMAILS,
             Setting::CONTACT_FAX,
+            Setting::CONTACT_WHATSAPP_URL,
         ])->get();
 
-        [$contactPhones, $contactMobiles, $contactEmail, $contactFax] = [
-            $settings->firstWhere('key', Setting::CONTACT_PHONES),
-            $settings->firstWhere('key', Setting::CONTACT_MOBILES),
-            $settings->firstWhere('key', Setting::CONTACT_EMAILS),
-            $settings->firstWhere('key', Setting::CONTACT_FAX),
-        ];
         return view('setting.index', compact('settings'));
     }
 
@@ -39,15 +34,17 @@ class SettingController extends Controller
             Setting::CONTACT_MOBILES,
             Setting::CONTACT_EMAILS,
             Setting::CONTACT_FAX,
+            Setting::CONTACT_WHATSAPP_URL,
         ])->get();
 
-        [$contactPhones, $contactMobiles, $contactEmails, $contactFax] = [
+        [$contactPhones, $contactMobiles, $contactEmails, $contactFax, $whatsapp] = [
             $settings->firstWhere('key', Setting::CONTACT_PHONES),
             $settings->firstWhere('key', Setting::CONTACT_MOBILES),
             $settings->firstWhere('key', Setting::CONTACT_EMAILS),
             $settings->firstWhere('key', Setting::CONTACT_FAX),
+            $settings->firstWhere('key', Setting::CONTACT_WHATSAPP_URL),
         ];
-        return view('setting.form', compact('contactPhones', 'contactMobiles', 'contactEmails', 'contactFax'));
+        return view('setting.form', compact('contactPhones', 'contactMobiles', 'contactEmails', 'contactFax', 'whatsapp'));
     }
 
     /**
@@ -60,6 +57,7 @@ class SettingController extends Controller
             Setting::CONTACT_MOBILES,
             Setting::CONTACT_EMAILS,
             Setting::CONTACT_FAX,
+            Setting::CONTACT_WHATSAPP_URL,
         ])->get();
 
         foreach ($settings as $setting) {

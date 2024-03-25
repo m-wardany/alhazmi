@@ -2,25 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AwardResource;
-use App\Http\Resources\BranchResource;
-use App\Http\Resources\InfoResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\SliderResource;
-use App\Http\Resources\SocialMediaResource;
-use App\Models\Award;
-use App\Models\Branch;
-use App\Models\Info;
-use App\Models\Product;
+use App\Mail\ContactUsMail;
 use App\Models\Setting;
-use App\Models\Slider;
-use App\Models\SocialMedia;
 use App\Services\GetHomeDetail;
-use App\Site;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -46,5 +32,23 @@ class HomeController extends Controller
             return Storage::disk('public')->download($catalogue->value, 'Alhazemi-Catalogue.pdf');
         }
         return null;
+    }
+
+    function contact(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'message' => 'required|string',
+        ]);
+
+        // Send an email notification
+        Mail::to('your-email@example.com')->send(new ContactUsMail($request->all()));
+
+        // You can perform additional actions here, such as saving to a database
+
+        // Return a response
+        return response()->json(['message' => 'Your message has been sent successfully!']);
     }
 }

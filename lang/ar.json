@@ -40,6 +40,7 @@
     "Contact Info": "معلومات الاتصال",
     "Contact Mobiles": "الهواتف المحمولة للاتصال",
     "Contact Phones": "الهواتف للاتصال",
+    "Contact Whatsapp Url" : "رقم الواتساب",
     "Create Award": "إنشاء جائزة",
     "Create Branch": "إنشاء فرع",
     "Create Partner": "إنشاء شريك",
@@ -126,5 +127,12 @@
     "Vesion": "إصدار",
     "Welcome!": "مرحبًا!",
     "You are logged in!": "لقد قمت بتسجيل الدخول!",
-    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني."
+    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني.",
+    "Select Slider": "اختر الشريحة",
+    "Sliders": "الشرائح",
+    "First Group": "المجموعة اﻷولى",
+    "Second Group": "المجموعة الثانية",
+    "Contacts": "عناوين اﻹتصال",
+    "Contact Type": "نوع الإتصال", 
+    "Value": "لقيمة"
 }

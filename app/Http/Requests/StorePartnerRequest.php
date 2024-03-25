@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePartnerRequest extends FormRequest
 {
@@ -22,6 +23,7 @@ class StorePartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'slider' => ['required', Rule::in([0, 1])],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

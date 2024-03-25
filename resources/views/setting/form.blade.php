@@ -60,6 +60,14 @@
                         <x-input-error class="mt-2" :messages="$errors->get('contact_emails')" />
                     </div>
                     <br />
+                    <div>
+                        <x-input-label for="contact_whatsapp_url" :value="__('Contact Whatsapp Url')" />
+                        <x-text-input id="contact_whatsapp_url" name="contact_whatsapp_url" type="text"
+                            class="mt-1 block w-full" :value="old('contact_whatsapp_url', $whatsapp->value)" autofocus
+                            autocomplete="contact_whatsapp_url" />
+                        <x-input-error class="mt-2" :messages="$errors->get('contact_whatsapp_url')" />
+                    </div>
+                    <br />
                     <div class="flex items-center gap-4">
                         <x-primary-button>{{ __('Save') }}</x-primary-button>
 

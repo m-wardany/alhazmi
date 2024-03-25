@@ -21,8 +21,8 @@ final class GetHomeDetail
 {
     function execute()
     {
-        return cache()->rememberForever('home_page', function () {
-            $language = app()->getLocale();
+        $language = app()->getLocale();
+        return cache()->rememberForever($language . '_home_page', function () use ($language) {
             $info = Info::firstWhere('language', $language);
             $slider = Slider::all();
             $products = Product::all();
@@ -32,11 +32,12 @@ final class GetHomeDetail
             $branches = Branch::all();
             $partners = Partner::all();
             $socialMedia = SocialMedia::all();
-            [$contactPhones, $contactMobiles, $contactEmails, $contactFax] = [
+            [$contactPhones, $contactMobiles, $contactEmails, $contactFax, $whatsapp] = [
                 $settings->firstWhere('key', Setting::CONTACT_PHONES),
                 $settings->firstWhere('key', Setting::CONTACT_MOBILES),
                 $settings->firstWhere('key', Setting::CONTACT_EMAILS),
                 $settings->firstWhere('key', Setting::CONTACT_FAX),
+                $settings->firstWhere('key', Setting::CONTACT_WHATSAPP_URL),
             ];
             return [
                 'data' => [
@@ -48,13 +49,17 @@ final class GetHomeDetail
                     ],
                     'awards' => AwardResource::collection($awards),
                     'branches' => BranchResource::collection($branches),
-                    'partners' => PartnerResource::collection($partners),
+                    'partners' => [
+                        PartnerResource::collection($partners->where('slider', Partner::SLIDER_A)),
+                        PartnerResource::collection($partners->where('slider', Partner::SLIDER_B)),
+                    ],
                     'contacts' => [
                         'info' => [
                             'contactPhones' => data_get($contactPhones, 'formatted_value'),
                             'contactMobiles' => data_get($contactMobiles, 'formatted_value'),
                             'contactEmails' => data_get($contactEmails, 'formatted_value'),
                             'contactFax' => data_get($contactFax, 'formatted_value'),
+                            'whatsapp' => data_get($whatsapp, 'formatted_value'),
                         ],
                         'social_media' => SocialMediaResource::collection($socialMedia),
                     ]

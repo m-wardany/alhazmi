@@ -25,7 +25,8 @@ class StoreSettingRequest extends FormRequest
             'contact_phones' => 'string|max:255',
             'contact<<-mobiles' => 'string|max:255',
             'contact_emails' => 'string|max:255|email',
-            'contact_fax' => 'string|max:255'
+            'contact_fax' => 'string|max:255',
+            'contact_whatsapp_url' => 'string|required|max:255'
         ];
     }
 }

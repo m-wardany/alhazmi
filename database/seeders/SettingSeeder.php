@@ -41,5 +41,10 @@ class SettingSeeder extends Seeder
         ], [
             'value' => ''
         ]);
+        Setting::updateOrCreate([
+            'key' => Setting::CONTACT_WHATSAPP_URL,
+        ], [
+            'value' => ''
+        ]);
     }
 }

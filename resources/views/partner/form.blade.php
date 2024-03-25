@@ -36,9 +36,25 @@
                             @method('post')
                 @endif
                 @csrf
+
+
+                <div class="form-group">
+                    <label for="slider" class="block mb-2 text-sm font-medium ">{{ __('Select Slider') }}</label>
+                    <select id="slider" name="slider" required
+                        class="border border-gray-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                        <option>{{ __('Sliders') }}</option>
+                        <option {{ isset($partner) && $partner->slider == '0' ? 'selected' : '' }} value="0">
+                            {{ __('First Group') }}</option>
+                        <option {{ isset($partner) && $partner->slider == '1' ? 'selected' : '' }} value="1">
+                            {{ __('Second Group') }}</option>
+                    </select>
+                </div>
+                <br />
+
                 @if (isset($partner))
                     <img src="{{ asset('storage/' . $partner->image) }}" width="400">
                 @endif
+                <br />
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" class="form-control" id="image" name="image">
