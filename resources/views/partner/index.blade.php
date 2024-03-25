@@ -25,13 +25,16 @@
             <table class="w-full ">
                 <thead>
                     <tr class="bg-white border-b  dark:border-gray-700">
-                        <th>Image</th>
-                        <th>Actions</th>
+                        <th>{{ __('Slider') }}</th>
+                        <th>{{ __('Image') }}</th>
+                        <th>{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($partners as $partner)
                         <tr class="bg-white border-b ">
+                            <td> {{ $partner->slider + 1 }}
+                            </td>
                             <td>
                                 @if ($partner->image)
                                     <img src="{{ asset('storage/' . $partner->image) }}" width="100">
