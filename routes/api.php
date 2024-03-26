@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('home/catalogue-download', [HomeController::class, 'downloadCatalogue'])->name('api.catalogue.download');
-Route::post('/contact-us', [HomeController::class, 'contact']);
+Route::post('contact-us', [HomeController::class, 'contact']);

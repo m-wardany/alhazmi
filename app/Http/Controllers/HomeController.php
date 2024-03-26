@@ -38,13 +38,20 @@ class HomeController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
         ]);
 
         // Send an email notification
-        Mail::to('your-email@example.com')->send(new ContactUsMail($request->all()));
+        Mail::to('info@alhazmie.com')->send(
+            new ContactUsMail(
+                name: sprintf('%s %s', $request->get('first_name'), $request->get('first_name')),
+                email: $request->get('email'),
+                message: $request->get('message')
+            )
+        );
 
         // You can perform additional actions here, such as saving to a database
 
