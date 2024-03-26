@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         Mail::to('info@alhazmie.com')->send(
             new ContactUsMail(
-                name: sprintf('%s %s', $request->get('first_name'), $request->get('first_name')),
+                name: sprintf('%s %s', $request->get('first_name'), $request->get('lasts_name')),
                 email: $request->get('email'),
                 message: $request->get('message')
             )
