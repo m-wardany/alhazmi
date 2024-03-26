@@ -8,6 +8,7 @@ use App\Services\GetHomeDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class HomeController extends Controller
@@ -44,7 +45,6 @@ class HomeController extends Controller
             'message' => 'required|string',
         ]);
 
-        // Send an email notification
         Mail::to('info@alhazmie.com')->send(
             new ContactUsMail(
                 name: sprintf('%s %s', $request->get('first_name'), $request->get('first_name')),
@@ -53,9 +53,7 @@ class HomeController extends Controller
             )
         );
 
-        // You can perform additional actions here, such as saving to a database
-
         // Return a response
-        return response()->json(['message' => 'Your message has been sent successfully!']);
+        return response()->json(['message' => __('Your message has been sent successfully!')]);
     }
 }

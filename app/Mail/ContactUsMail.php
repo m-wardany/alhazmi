@@ -16,7 +16,7 @@ class ContactUsMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name, private $email, private $message)
+    public function __construct(public $name, public $email, public $message)
     {
         //
     }
@@ -28,7 +28,7 @@ class ContactUsMail extends Mailable
     {
         return new Envelope(
             subject: 'Contact Us Mail',
-            from: $this->email,
+            from: env('MAIL_FROM_ADDRESS'), //$this->email,
             to: env('MAIL_FROM_ADDRESS')
         );
     }
