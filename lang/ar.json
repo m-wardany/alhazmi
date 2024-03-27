@@ -136,5 +136,10 @@
     "Contact Type": "نوع الإتصال", 
     "Value": "لقيمة",
     "Your message has been sent successfully!": "تم إرسال رسالتك بنجاح",
-    "Sort": "ترتيب"
+    "Sort": "ترتيب",
+    "Contact us messages": "رسائل التواصل",
+    "Contact us": "رسائل التواصل",
+    "Date": "التاريخ",
+    "View": "عرض",
+    "Delete": "مسح"
 }

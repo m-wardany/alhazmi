@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProductController;
@@ -45,6 +46,10 @@ Route::middleware('auth')->group(function () {
         'branch' => BranchController::class,
         'socialmedia' => SocialMediaController::class,
     ]);
+    Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contactus.index');
+    Route::get('/contact-us/{contactUs}', [ContactUsController::class, 'show'])->name('contactus.show');
+    Route::delete('/contact-us/{contactUs}', [ContactUsController::class, 'destroy'])->name('contactus.destroy');
+
     Route::resource('setting', SettingController::class)->only(['index', 'create', 'store']);
     Route::post('sort', [SortController::class, 'sort'])->name('sort');
 });
