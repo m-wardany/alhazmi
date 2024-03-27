@@ -15,14 +15,17 @@
         </header>
     </section>
     <section>
-        <x-primary-link :href="route('slider.create')" :active="request()->routeIs('slider/*')">
+        <x-primary-link :href="route('slider.create')">
             {{ __('Add a new slider') }}
         </x-primary-link>
+        <x-primary-button id="save-button" disabled data-model="Slider">
+            {{ __('Sort') }}
+        </x-primary-button>
 
         <div class="relative
             overflow-x-auto shadow-md sm:rounded-lg">
 
-            <table class="w-full ">
+            <table class="w-full " id="sortable-table">
                 <thead>
                     <tr class="bg-white border-b  dark:border-gray-700">
                         <th>Image</th>
@@ -31,7 +34,7 @@
                 </thead>
                 <tbody>
                     @foreach ($sliders as $slider)
-                        <tr class="bg-white border-b ">
+                        <tr class="bg-white border-b " data-id="{{ $slider->id }}">
                             <td>
                                 @if ($slider->image)
                                     <img src="{{ asset('storage/' . $slider->image) }}" width="100">

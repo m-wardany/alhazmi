@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
-    use HasFactory, \App\Traits\UpdateCache;
+    use HasFactory, \App\Traits\UpdateCache, \App\Traits\Sortable;
 
     const SLIDER_A = 0;
     const SLIDER_B = 1;

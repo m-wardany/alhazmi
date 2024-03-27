@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    use HasFactory, \App\Traits\UpdateCache;
+    use HasFactory, \App\Traits\UpdateCache, \App\Traits\Sortable;
 
     protected $fillable = [
         'image',
+        'sort'
     ];
 
     function getImageUrlAttribute(): string

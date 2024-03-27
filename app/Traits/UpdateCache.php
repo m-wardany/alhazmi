@@ -9,7 +9,8 @@ trait UpdateCache
     static function bootUpdateCache(): void
     {
         static::saved(function (Model $model) {
-            cache()->forget('home_page');
+            cache()->forget('ar_home_page');
+            cache()->forget('en_home_page');
         });
     }
 }

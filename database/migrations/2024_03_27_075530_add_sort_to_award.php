@@ -10,11 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('awards', function (Blueprint $table) {
             $table->unsignedInteger('sort')->nullable();
         });
-        Schema::table('partners', function (Blueprint $table) {
-            $table->unsignedInteger('slider')->nullable();
+        Schema::table('sliders', function (Blueprint $table) {
             $table->unsignedInteger('sort')->nullable();
         });
     }
@@ -24,11 +23,10 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('awards', function (Blueprint $table) {
             $table->dropColumn('sort');
         });
-        Schema::table('partners', function (Blueprint $table) {
-            $table->dropColumn('slider');
+        Schema::table('sliders', function (Blueprint $table) {
             $table->dropColumn('sort');
         });
     }

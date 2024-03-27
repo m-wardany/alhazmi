@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model
 {
-    use HasFactory, HasLocale, \App\Traits\UpdateCache;
+    use HasFactory, HasLocale, \App\Traits\UpdateCache, \App\Traits\Sortable;
 
 
     protected $fillable = [
         'ar_name',
         'en_name',
-        'image'
+        'image',
+        'sort'
     ];
 
     function getImageUrlAttribute(): string

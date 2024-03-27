@@ -21,12 +21,15 @@
         <x-primary-link :href="route('edit.catalogue')">
             {{ __('Update Catalogue') }}
         </x-primary-link>
+        <x-primary-button id="save-button" disabled data-model="Product">
+            {{ __('Sort') }}
+        </x-primary-button>
         <br />
         <br />
         <div class="relative
             overflow-x-auto shadow-md sm:rounded-lg">
 
-            <table class="w-full ">
+            <table class="w-full" id="sortable-table">
                 <thead>
                     <tr class="bg-white border-b  dark:border-gray-700">
                         <th>Arabic Name</th>
@@ -37,7 +40,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        <tr class="bg-white border-b ">
+                        <tr class="bg-white border-b" data-id="{{ $product->id }}">
                             <td>
                                 {{ $product->ar_name }}
                             </td>

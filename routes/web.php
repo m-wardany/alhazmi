@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\SortController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
         'socialmedia' => SocialMediaController::class,
     ]);
     Route::resource('setting', SettingController::class)->only(['index', 'create', 'store']);
+    Route::post('sort', [SortController::class, 'sort'])->name('sort');
 });
 
 require __DIR__ . '/auth.php';

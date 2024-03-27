@@ -15,14 +15,17 @@
         </header>
     </section>
     <section>
-        <x-primary-link :href="route('award.create')" :active="request()->routeIs('award/*')">
+        <x-primary-link :href="route('award.create')">
             {{ __('Add a new award') }}
         </x-primary-link>
+        <x-primary-button id="save-button" disabled data-model="Award">
+            {{ __('Sort') }}
+        </x-primary-button>
 
         <div class="relative
             overflow-x-auto shadow-md sm:rounded-lg">
 
-            <table class="w-full ">
+            <table class="w-full" id="sortable-table">
                 <thead>
                     <tr class="bg-white border-b  dark:border-gray-700">
                         <th>Arabic Name</th>
@@ -33,7 +36,7 @@
                 </thead>
                 <tbody>
                     @foreach ($awards as $award)
-                        <tr class="bg-white border-b ">
+                        <tr class="bg-white border-b " data-id="{{ $award->id }}">
                             <td>
                                 {{ $award->ar_name }}
                             </td>
