@@ -8,7 +8,7 @@
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Create SocialMedia') }}
+                {{ __('Create socialmedia') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
@@ -28,8 +28,8 @@
                     </div>
                 @endif
 
-                @if (isset($SocialMedia))
-                    <form action="{{ route('socialmedia.update', ['SocialMedia' => $SocialMedia->id]) }}" method="POST"
+                @if (isset($socialmedia))
+                    <form action="{{ route('socialmedia.update', ['socialmedia' => $socialmedia->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @method('put')
                     @else
@@ -38,30 +38,16 @@
                 @endif
                 @csrf
                 <div>
-                    <x-input-label for="ar_name" :value="__('Ar_name')" />
-                    <x-text-input id="ar_name" name="ar_name" type="text" class="mt-1 block w-full"
-                        :value="old('ar_name', isset($SocialMedia) ? $SocialMedia->ar_name : '')" autofocus autocomplete="ar_name" />
-                    <x-input-error class="mt-2" :messages="$errors->get('ar_name')" />
-                </div>
-                <br />
-                <div>
-                    <x-input-label for="en_name" :value="__('En_name')" />
-                    <x-text-input id="en_name" name="en_name" type="text" class="mt-1 block w-full"
-                        :value="old('en_name', isset($SocialMedia) ? $SocialMedia->en_name : '')" autofocus autocomplete="en_name" />
-                    <x-input-error class="mt-2" :messages="$errors->get('en_name')" />
-                </div>
-                <br />
-                <div>
                     <x-input-label for="url" :value="__('Url')" />
                     <x-text-input id="url" name="url" type="text" class="mt-1 block w-full"
-                        :value="old('url', isset($SocialMedia) ? $SocialMedia->url : '')" required autofocus autocomplete="url" />
+                        :value="old('url', isset($socialmedia) ? $socialmedia->url : '')" required autofocus autocomplete="url" />
                     <x-input-error class="mt-2" :messages="$errors->get('url')" />
                 </div>
                 <br />
 
                 <div class="form-group">
-                    @if (isset($SocialMedia))
-                        <img src="{{ asset('storage/' . $SocialMedia->image) }}" width="400">
+                    @if (isset($socialmedia))
+                        <img src="{{ asset('storage/' . $socialmedia->image) }}" width="400">
                     @endif
                     <label for="image">Image</label>
                     <input type="file" class="form-control" id="image" name="image">
